@@ -1,0 +1,63 @@
+.card {
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: white;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.12);
+}
+
+.titulo {
+  margin: 0 0 10px 0;
+  color: #333;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.status {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.concluido {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.emAndamento {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.naoIniciado {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.desconhecido {
+  background-color: #e2e3e5;
+  color: #383d41;
+}
+
+.pecasFaltantes {
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 11px;
+  background-color: #ff4444;
+  color: white;
+  font-weight: 500;
+}

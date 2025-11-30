@@ -1,0 +1,468 @@
+.pagina {
+    margin: 0;
+    border: 0;
+    min-height: 100vh;
+    background-color: #fafafa;
+}
+
+.conteudo {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.botaoVoltar {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.botaoVoltar:hover {
+    background-color: #545b62;
+}
+
+/* Botões fixos no topo */
+.botoesTopo {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+    z-index: 1000;
+}
+
+.botaoTeste {
+    background-color: #2db6c0;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+    border: solid 2px #fff;
+}
+
+.botaoTeste:hover {
+    background-color: #24949c;
+}
+
+.botaoRelatorio {
+    background-color: #2db6c0;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+    border: solid 2px #fff;
+}
+
+.botaoRelatorio:hover {
+    background-color: #24949c;
+}
+
+.titulo {
+    color: #333;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.subtitulo {
+    color: #666;
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.statCard {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.2s;
+}
+
+.statCard:hover {
+    transform: translateY(-2px);
+}
+
+.statCard h3 {
+    margin: 0 0 10px 0;
+    color: #666;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+.statNumber {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #2db6c0;
+    margin: 0;
+}
+
+.formContainer {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+.formContainer h2 {
+    margin-top: 0;
+    color: #333;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #2db6c0;
+    padding-bottom: 10px;
+}
+
+.form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.input {
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+.input:focus {
+    outline: none;
+    border-color: #2db6c0;
+    box-shadow: 0 0 0 2px rgba(45, 182, 192, 0.1);
+}
+
+.checkboxGroup {
+    grid-column: span 2;
+    display: flex;
+    gap: 20px;
+    padding: 10px 0;
+}
+
+.checkboxGroup label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.checkboxGroup input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #2db6c0;
+}
+
+.botaoAdicionar {
+    grid-column: span 2;
+    background-color: #2db6c0;
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.botaoAdicionar:hover {
+    background-color: #24949c;
+}
+
+.buscaContainer {
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.inputBusca {
+    width: 100%;
+    max-width: 400px;
+    padding: 12px 20px;
+    border: 2px solid #2db6c0;
+    border-radius: 25px;
+    font-size: 16px;
+    background-color: white;
+    transition: box-shadow 0.3s;
+}
+
+.inputBusca:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(45, 182, 192, 0.1);
+}
+
+.listaPecas h2 {
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 1.8rem;
+}
+
+.gridPecas {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 20px;
+}
+
+.cardPeca {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border-left: 5px solid #ddd;
+    position: relative;
+    overflow: hidden;
+}
+
+.cardPeca:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.cardPeca.completa {
+    border-left-color: #28a745;
+    background: linear-gradient(135deg, #fff 0%, #f8fff8 100%);
+}
+
+.cardPeca.faltante {
+    border-left-color: #dc3545;
+    background: linear-gradient(135deg, #fff 0%, #fff8f8 100%);
+}
+
+.cardPeca h3 {
+    margin: 0 0 15px 0;
+    color: #2db6c0;
+    font-size: 1.3rem;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.infoPeca {
+    margin-bottom: 15px;
+}
+
+.infoPeca p {
+    margin: 8px 0;
+    color: #555;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+}
+
+.infoPeca strong {
+    color: #333;
+    min-width: 120px;
+}
+
+.inputQuantidade {
+    width: 60px;
+    padding: 6px 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 14px;
+    transition: border-color 0.3s;
+}
+
+.inputQuantidade:focus {
+    outline: none;
+    border-color: #2db6c0;
+}
+
+.status {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.statusCompleto {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.statusFaltante {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.acoes {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+}
+
+.botaoInstalar {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s;
+    flex: 1;
+}
+
+.botaoInstalar:hover {
+    background-color: #218838;
+    transform: translateY(-1px);
+}
+
+.botaoRemover {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s;
+    flex: 1;
+}
+
+.botaoRemover:hover {
+    background-color: #c82333;
+    transform: translateY(-1px);
+}
+
+.emptyMessage {
+    text-align: center;
+    color: #666;
+    font-style: italic;
+    padding: 60px 40px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: 1.1rem;
+}
+
+@media (max-width: 768px) {
+    .conteudo {
+        padding: 10px;
+    }
+    
+    .header {
+        padding: 60px 20px 20px 20px;
+    }
+    
+    .botaoVoltar {
+        position: static;
+        margin-bottom: 15px;
+    }
+    
+    .botoesTopo {
+        position: relative;
+        top: auto;
+        right: auto;
+        margin-bottom: 15px;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    .form {
+        grid-template-columns: 1fr;
+    }
+    
+    .checkboxGroup {
+        grid-column: span 1;
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .botaoAdicionar {
+        grid-column: span 1;
+    }
+    
+    .gridPecas {
+        grid-template-columns: 1fr;
+    }
+    
+    .titulo {
+        font-size: 2rem;
+    }
+    
+    .infoPeca p {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+    }
+    
+    .acoes {
+        flex-direction: column;
+    }
+    
+    .stats {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .formContainer {
+        padding: 20px;
+    }
+    
+    .cardPeca {
+        padding: 15px;
+    }
+    
+    .input {
+        padding: 10px;
+    }
+    
+    .botaoAdicionar {
+        padding: 12px;
+    }
+    
+    .botoesTopo {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .botoesTopo button {
+        width: 100%;
+    }
+}

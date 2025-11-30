@@ -1,0 +1,313 @@
+.pagina {
+    margin: 0;
+    border: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.conteudo {
+    flex: 1;
+    padding: 20px;
+    background-color: #fafafa;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.input {
+    width: 300px;
+    padding: 12px 20px;
+    border-radius: 8px;
+    border: solid 2px #2db6c0;
+    background-color: aliceblue;
+    color: black;
+    font-size: 14px;
+}
+
+.addButton {
+    background-color: #2db6c0;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 24px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.addButton:hover {
+    background-color: #24949c;
+}
+
+.tabelaContainer {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    color: #000;
+}
+
+.tabela {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tabela th {
+    background-color: #2db6c0;
+    color: white;
+    padding: 15px;
+    text-align: left;
+    font-weight: 600;
+}
+
+.tabela td {
+    padding: 15px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.tabela tr:hover {
+    background-color: #f5f5f5;
+}
+
+.tabela tr:last-child td {
+    border-bottom: none;
+}
+
+.status {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    text-align: center;
+    display: inline-block;
+}
+
+.statusConcluido {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.statusAndamento {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.statusNaoIniciado {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.statusPendente {
+    background-color: #e2e3e5;
+    color: #383d41;
+}
+
+.acoes {
+    display: flex;
+    gap: 8px;
+}
+
+.acaoButton {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background-color 0.3s;
+}
+
+.editar {
+    background-color: #ffc107;
+    color: black;
+}
+
+.editar:hover {
+    background-color: #e0a800;
+}
+
+.excluir {
+    background-color: #dc3545;
+    color: white;
+}
+
+.excluir:hover {
+    background-color: #c82333;
+}
+
+.semResultados {
+  text-align: center; 
+  padding: 40px; 
+  color: #666;
+  background-color: white;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+.estatisticas {
+  margin-top: 20px; 
+  padding: 15px; 
+  background: #f8f9fa; 
+  border-radius: 8px;
+  font-size: 14px;
+}
+/* === MODAL === */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.modal {
+  background: #ffffff;
+  border-radius: 12px;
+  width: 400px;
+  max-width: 90%;
+  padding: 25px 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  animation: slideDown 0.3s ease-in-out;
+}
+
+.modal h2 {
+  text-align: center;
+  margin-bottom: 10px;
+  color: #2db6c0;
+}
+
+.modal label {
+  font-weight: 600;
+  color: #333;
+  font-size: 14px;
+  margin-top: 8px;
+}
+
+.modal input,
+.modal select {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1.5px solid #ccc;
+  font-size: 14px;
+  outline: none;
+  transition: all 0.2s;
+}
+
+.modal input:focus,
+.modal select:focus {
+  border-color: #2db6c0;
+  box-shadow: 0 0 0 3px rgba(45, 182, 192, 0.2);
+}
+
+/* Botões do modal */
+.modalButtons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.salvar {
+  background-color: #2db6c0;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.salvar:hover {
+  background-color: #24949c;
+}
+
+.cancelar {
+  background-color: #e0e0e0;
+  color: #333;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.cancelar:hover {
+  background-color: #bdbdbd;
+}
+
+/* === Animações === */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideDown {
+  from { transform: translateY(-20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@media (max-width: 500px) {
+  .modal {
+    width: 90%;
+    padding: 20px;
+  }
+
+  .modalButtons {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .salvar,
+  .cancelar {
+    width: 100%;
+  }
+}
+
+
+@media (max-width: 768px) {
+    .pagina {
+        flex-direction: column;
+    }
+    
+    .conteudo {
+        margin-left: 0;
+        margin-top: 60px;
+    }
+    
+    .header {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .input {
+        width: 100%;
+    }
+    
+    .tabelaContainer {
+        overflow-x: auto;
+    }
+}

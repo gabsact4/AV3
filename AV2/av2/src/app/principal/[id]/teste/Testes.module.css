@@ -1,0 +1,560 @@
+.pagina {
+    margin: 0;
+    border: 0;
+    min-height: 100vh;
+    background-color: #fafafa;
+}
+
+.conteudo {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.botaoVoltar {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.botaoVoltar:hover {
+    background-color: #545b62;
+}
+
+.titulo {
+    color: #333;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.subtitulo {
+    color: #666;
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+/* Progresso Geral */
+.progressoGeral {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.progressoGeral h3 {
+    margin: 0 0 15px 0;
+    color: #333;
+}
+
+.barraProgresso {
+    width: 100%;
+    height: 25px;
+    background-color: #e9ecef;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.progressoPreenchimento {
+    height: 100%;
+    background: linear-gradient(90deg, #2db6c0, #24949c);
+    transition: width 0.5s ease;
+    border-radius: 12px;
+}
+
+.percentual {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #2db6c0;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.statusAtual {
+    margin: 15px 0 0 0;
+    color: #666;
+    font-size: 1rem;
+}
+
+/* Etapas */
+.etapas {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.etapa {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-left: 6px solid #ddd;
+    transition: all 0.3s ease;
+}
+
+.etapaAtual {
+    border-left-color: #2db6c0;
+    box-shadow: 0 6px 12px rgba(45, 182, 192, 0.15);
+    transform: translateY(-2px);
+}
+
+.etapaConcluida {
+    border-left-color: #28a745;
+}
+
+.etapaFutura {
+    border-left-color: #6c757d;
+    opacity: 0.8;
+}
+
+.etapaHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 3px solid #f8f9fa;
+}
+
+.etapaInfo h3 {
+    margin: 0 0 8px 0;
+    color: #333;
+    font-size: 1.6rem;
+}
+
+.statusEtapa {
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    background: #e9ecef;
+    color: #495057;
+}
+
+.etapaAtual .statusEtapa {
+    background: #d1ecf1;
+    color: #0c5460;
+}
+
+.etapaConcluida .statusEtapa {
+    background: #d4edda;
+    color: #155724;
+}
+
+.progressoEtapa span {
+    font-size: 1.1rem;
+    color: #666;
+    font-weight: 500;
+}
+
+.testes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 20px;
+}
+
+.teste {
+    background: #f8f9fa;
+    padding: 25px;
+    border-radius: 12px;
+    border-left: 5px solid #6c757d;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.teste:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.testeConcluido {
+    border-left-color: #28a745;
+    border-color: #28a745;
+    background: #f8fff9;
+}
+
+.testeAtual {
+    border-left-color: #2db6c0;
+    border-color: #2db6c0;
+    background: #f0f9ff;
+}
+
+.testePendente {
+    border-left-color: #ffc107;
+    border-color: #ffc107;
+    background: #fffef0;
+}
+
+.testeInfo {
+    margin-bottom: 15px;
+}
+
+.testeHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.testeHeader h4 {
+    margin: 0;
+    color: #333;
+    font-size: 1.3rem;
+    flex: 1;
+}
+
+.tipoTeste {
+    padding: 6px 12px;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-left: 10px;
+}
+
+.tipoEletrico {
+    background: #e3f2fd;
+    color: #1565c0;
+}
+
+.tipoMecanico {
+    background: #fff3e0;
+    color: #ef6c00;
+}
+
+.tipoFinal {
+    background: #e8f5e8;
+    color: #2e7d32;
+}
+
+.detalhesConclusao {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 3px solid #28a745;
+}
+
+.detalhesItem {
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #555;
+}
+
+.detalhesItem:last-child {
+    margin-bottom: 0;
+}
+
+.criteriosConcluidos {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #dee2e6;
+    color: #28a745;
+    font-weight: 600;
+}
+
+.criteriosPendentes {
+    color: #dc3545;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.acoesTeste {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.botaoIniciar {
+    background-color: #2db6c0;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.botaoIniciar:hover {
+    background-color: #24949c;
+    transform: translateY(-2px);
+}
+
+.statusConcluido {
+    text-align: center;
+}
+
+.concluidoBadge {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.aguardando {
+    color: #6c757d;
+    font-style: italic;
+    font-size: 14px;
+}
+
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 20px;
+}
+
+.modal {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    max-width: 600px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.modal h2 {
+    margin: 0 0 25px 0;
+    color: #333;
+    text-align: center;
+    font-size: 1.8rem;
+    border-bottom: 3px solid #2db6c0;
+    padding-bottom: 15px;
+}
+
+.infoTeste {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.infoTeste p {
+    margin: 8px 0;
+    color: #555;
+}
+
+.criterios {
+    margin-bottom: 25px;
+}
+
+.criterioItem {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    margin-bottom: 12px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.criterioItem:hover {
+    background: #e9ecef;
+    border-color: #2db6c0;
+}
+
+.checkbox {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.criterioTexto {
+    flex: 1;
+    font-size: 14px;
+    color: #333;
+    transition: all 0.3s ease;
+}
+
+.criterioAprovado {
+    text-decoration: line-through;
+    color: #28a745;
+    font-weight: 600;
+}
+
+.formTeste {
+    margin-bottom: 25px;
+}
+
+.inputGroup {
+    margin-bottom: 20px;
+}
+
+.inputGroup label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #333;
+}
+
+.input, .textarea {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+}
+
+.input:focus, .textarea:focus {
+    outline: none;
+    border-color: #2db6c0;
+    box-shadow: 0 0 0 3px rgba(45, 182, 192, 0.1);
+}
+
+.textarea {
+    resize: vertical;
+    min-height: 100px;
+    font-family: inherit;
+}
+
+.acoesModal {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.botaoConcluir {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s;
+    flex: 1;
+}
+
+.botaoConcluir:hover:not(:disabled) {
+    background-color: #218838;
+    transform: translateY(-2px);
+}
+
+.botaoConcluir:disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.botaoCancelar {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s;
+    flex: 1;
+}
+
+.botaoCancelar:hover {
+    background-color: #c82333;
+    transform: translateY(-2px);
+}
+
+.botaoRecarregar {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.botaoRecarregar:hover {
+  background: #0056b3;
+}
+
+@media (max-width: 768px) {
+    .conteudo {
+        padding: 10px;
+    }
+    
+    .header {
+        padding: 70px 20px 20px 20px;
+    }
+    
+    .botaoVoltar {
+        position: static;
+        margin-bottom: 15px;
+        width: 100%;
+    }
+    
+    .titulo {
+        font-size: 2rem;
+    }
+    
+    .etapaHeader {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    
+    .testes {
+        grid-template-columns: 1fr;
+    }
+    
+    .testeHeader {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .tipoTeste {
+        align-self: flex-start;
+    }
+    
+    .modal {
+        padding: 25px;
+        margin: 10px;
+    }
+    
+    .acoesModal {
+        flex-direction: column;
+    }
+    
+    .modal h2 {
+        font-size: 1.5rem;
+    }
+}
