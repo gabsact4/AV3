@@ -1,0 +1,135 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  username  String   @unique
+  password  String
+  name      String
+  phone     String?
+  address   String?
+  role      UserRole @default(OPERATOR)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  assignedStages StageAssignment[]
+
+  @@map("users")
+}
+
+model Aircraft {
+  id          Int        @id @default(autoincrement())
+  code        String     @unique
+  model       String
+  type        AircraftType
+  capacity    Int
+  range       Int
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  parts       Part[]
+  stages      Stage[]
+  tests       Test[]
+
+  @@map("aircrafts")
+}
+
+model Part {
+  id          Int        @id @default(autoincrement())
+  name        String
+  type        PartType
+  supplier    String
+  status      PartStatus @default(IN_PRODUCTION)
+  aircraftId  Int?
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  aircraft    Aircraft?  @relation(fields: [aircraftId], references: [id], onDelete: Cascade)
+
+  @@map("parts")
+}
+
+model Stage {
+  id          Int           @id @default(autoincrement())
+  name        String
+  deadline    Int
+  status      StageStatus   @default(PENDING)
+  aircraftId  Int?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  aircraft    Aircraft?     @relation(fields: [aircraftId], references: [id], onDelete: Cascade)
+  assignments StageAssignment[]
+
+  @@map("stages")
+}
+
+model StageAssignment {
+  id        Int     @id @default(autoincrement())
+  stageId   Int
+  userId    Int
+
+  stage     Stage   @relation(fields: [stageId], references: [id], onDelete: Cascade)
+  user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([stageId, userId])
+  @@map("stage_assignments")
+}
+
+model Test {
+  id          Int           @id @default(autoincrement())
+  type        TestType
+  result      TestResult?
+  aircraftId  Int?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+
+  aircraft    Aircraft?     @relation(fields: [aircraftId], references: [id], onDelete: Cascade)
+
+  @@map("tests")
+}
+
+enum UserRole {
+  ADMIN
+  ENGINEER
+  OPERATOR
+}
+
+enum AircraftType {
+  COMMERCIAL
+  MILITARY
+}
+
+enum PartType {
+  NATIONAL
+  IMPORTED
+}
+
+enum PartStatus {
+  IN_PRODUCTION
+  IN_TRANSPORT
+  READY
+}
+
+enum StageStatus {
+  PENDING
+  IN_PROGRESS
+  COMPLETED
+}
+
+enum TestType {
+  ELECTRICAL
+  HYDRAULIC
+  AERODYNAMIC
+}
+
+enum TestResult {
+  APPROVED
+  REJECTED
+}
