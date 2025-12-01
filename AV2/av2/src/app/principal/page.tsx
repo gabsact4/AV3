@@ -42,9 +42,12 @@ export default function Principal() {
   });
   const [mensagem, setMensagem] = useState("");
   const [erro, setErro] = useState("");
+  const [userRole, setUserRole] = useState<string>('');
 
   useEffect(() => {
     carregarAeronaves();
+    const role = localStorage.getItem('userRole') || '';
+    setUserRole(role);
   }, []);
 
   async function carregarAeronaves() {
@@ -99,6 +102,10 @@ export default function Principal() {
   const aeroNavesFiltradas = aeroNaves.filter(nave =>
     nave.model?.toLowerCase().includes(busca.toLowerCase())
   );
+
+  const isAdminOrEngineer = () => {
+    return userRole === 'ADMIN' || userRole === 'ENGINEER';
+  };
 
   return (
     <div className={Style.pagina}>
@@ -156,16 +163,18 @@ export default function Principal() {
             <div className={Style.emptyState}>Nenhuma aeronave encontrada.</div>
           )}
           
-          <button 
-            className={Style.cardButton}
-            onClick={() => setModalAberto(true)}
-          >
-            <div className={Style.cardButtonContent}>
-              <div className={Style.cardButtonIcon}>+</div>
-              <h3 className={Style.cardButtonTitle}>Cadastrar Nova Aeronave</h3>
-              <p className={Style.cardButtonSubtitle}>Clique para adicionar uma nova aeronave</p>
-            </div>
-          </button>
+          {isAdminOrEngineer() && (
+            <button 
+              className={Style.cardButton}
+              onClick={() => setModalAberto(true)}
+            >
+              <div className={Style.cardButtonContent}>
+                <div className={Style.cardButtonIcon}>+</div>
+                <h3 className={Style.cardButtonTitle}>Cadastrar Nova Aeronave</h3>
+                <p className={Style.cardButtonSubtitle}>Clique para adicionar uma nova aeronave</p>
+              </div>
+            </button>
+          )}
         </div>
       </div>
 

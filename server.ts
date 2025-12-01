@@ -392,6 +392,141 @@ app.post('/api/aeronaves', async (req, res) => {
   }
 });
 
+app.get('/api/aeronaves/:id/etapas', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const stages = await prisma.stage.findMany({
+      where: { aircraftId: parseInt(id) },
+      include: {
+        aircraft: true,
+        assignments: {
+          include: {
+            user: true
+          }
+        }
+      },
+      orderBy: {
+        createdAt: 'asc'
+      }
+    });
+    
+    res.json(stages);
+  } catch (error) {
+    console.error('Erro ao buscar etapas da aeronave:', error);
+    res.status(500).json({ error: 'Erro ao buscar etapas da aeronave' });
+  }
+});
+
+app.put('/api/aeronaves/:id/responsavel', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { responsavelId } = req.body;
+
+    const aeronave = await prisma.aircraft.findUnique({
+      where: { id: parseInt(id) }
+    });
+
+    if (!aeronave) {
+      return res.status(404).json({ error: 'Aeronave não encontrada' });
+    }
+
+    const responsavel = await prisma.user.findUnique({
+      where: { id: responsavelId }
+    });
+
+    if (!responsavel) {
+      return res.status(404).json({ error: 'Responsável não encontrado' });
+    }
+
+    const aeronaveAtualizada = await prisma.aircraft.update({
+      where: { id: parseInt(id) },
+      data: {
+        },
+      include: {
+        parts: true,
+        stages: true,
+        tests: true
+      }
+    });
+
+    res.json({ 
+      message: 'Responsável atribuído com sucesso',
+      aeronave: aeronaveAtualizada,
+      responsavel: {
+        id: responsavel.id,
+        name: responsavel.name,
+        role: responsavel.role
+      }
+    });
+  } catch (error) {
+    console.error('Erro ao atribuir responsável:', error);
+    res.status(500).json({ error: 'Erro ao atribuir responsável' });
+  }
+});
+
+app.post('/api/aeronaves/:id/iniciar-etapa', async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const etapaPendente = await prisma.stage.findFirst({
+      where: { 
+        aircraftId: parseInt(id),
+        status: 'PENDING'
+      },
+      orderBy: {
+        createdAt: 'asc'
+      }
+    });
+
+    if (!etapaPendente) {
+      return res.status(404).json({ error: 'Nenhuma etapa pendente encontrada' });
+    }
+
+    const etapaAtualizada = await prisma.stage.update({
+      where: { id: etapaPendente.id },
+      data: { status: 'IN_PROGRESS' }
+    });
+
+    res.json({ 
+      message: 'Etapa iniciada com sucesso',
+      etapa: etapaAtualizada
+    });
+  } catch (error) {
+    console.error('Erro ao iniciar etapa:', error);
+    res.status(500).json({ error: 'Erro ao iniciar etapa' });
+  }
+});
+
+app.post('/api/aeronaves/:id/concluir-etapa', async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const etapaEmAndamento = await prisma.stage.findFirst({
+      where: { 
+        aircraftId: parseInt(id),
+        status: 'IN_PROGRESS'
+      }
+    });
+
+    if (!etapaEmAndamento) {
+      return res.status(404).json({ error: 'Nenhuma etapa em andamento encontrada' });
+    }
+
+    const etapaAtualizada = await prisma.stage.update({
+      where: { id: etapaEmAndamento.id },
+      data: { status: 'COMPLETED' }
+    });
+
+    res.json({ 
+      message: 'Etapa concluída com sucesso',
+      etapa: etapaAtualizada
+    });
+  } catch (error) {
+    console.error('Erro ao concluir etapa:', error);
+    res.status(500).json({ error: 'Erro ao concluir etapa' });
+  }
+});
+
 app.get('/api/pecas', async (req, res) => {
   try {
     const pecas = await prisma.part.findMany();
@@ -1194,7 +1329,6 @@ app.post('/api/metrics/teste-carga', async (req, res) => {
       }
     };
     
-    console.log(` Teste concluído: ${testResult.summary.totalRequests} requisições em ${duration}ms`);
     res.json(testResult);
   } catch (error) {
     console.error(' Erro no teste de carga:', error);
@@ -1204,7 +1338,6 @@ app.post('/api/metrics/teste-carga', async (req, res) => {
 
 app.get('/api/health/advanced', async (req, res) => {
   try {
-    console.log('🔍 Verificando saúde do sistema...');
     
     let dbStatus = { status: 'CONECTADO', timestamp: new Date() };
     try {

@@ -326,9 +326,6 @@ export default function PecasAeronavePage() {
             Ir para Testes
           </button>
         )}
-        <button className={Style.botaoRelatorio} onClick={gerarRelatorio}>
-          Relatório Console
-        </button>
         <button className={Style.botaoRelatorio} onClick={gerarPDF} style={{backgroundColor: '#24949c', marginLeft: '10px'}}>
            Gerar PDF
         </button>
