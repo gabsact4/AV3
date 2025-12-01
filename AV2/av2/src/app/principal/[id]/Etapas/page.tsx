@@ -157,6 +157,32 @@ export default function EtapasAeronavePage() {
     }
   };
 
+  const colocarEmAndamento = async (etapaId: number) => {
+    try {
+      setError('');
+      await api.put(`/stages/${etapaId}`, {
+        status: 'IN_PROGRESS'
+      });
+      await carregarDados();
+    } catch (error: any) {
+      console.error("Erro ao colocar etapa em andamento:", error);
+      setError(error.response?.data?.error || "Erro ao colocar etapa em andamento");
+    }
+  };
+
+  const concluirEtapa = async (etapaId: number) => {
+    try {
+      setError('');
+      await api.put(`/stages/${etapaId}`, {
+        status: 'COMPLETED'
+      });
+      await carregarDados();
+    } catch (error: any) {
+      console.error("Erro ao concluir etapa:", error);
+      setError(error.response?.data?.error || "Erro ao concluir etapa");
+    }
+  };
+
   const toggleUsuario = (userId: number) => {
     setNovaEtapa(prev => ({
       ...prev,
@@ -182,6 +208,14 @@ export default function EtapasAeronavePage() {
       'COMPLETED': 'Concluído'
     };
     return traducoes[status] || status;
+  };
+
+  const isOperario = () => {
+    return userRole === 'OPERATOR';
+  };
+
+  const isAdminOrEngineer = () => {
+    return userRole === 'ADMIN' || userRole === 'ENGINEER';
   };
 
   if (loading) {
@@ -221,7 +255,7 @@ export default function EtapasAeronavePage() {
         )}
 
         <div className={Style.controles}>
-          {(userRole === 'ADMIN' || userRole === 'ENGINEER') && (
+          {isAdminOrEngineer() && (
             <button
               className={Style.botaoNovaEtapa}
               onClick={() => setMostrarForm(!mostrarForm)}
@@ -313,7 +347,7 @@ export default function EtapasAeronavePage() {
           {etapas.length === 0 ? (
             <div className={Style.semEtapas}>
               <p>Nenhuma etapa cadastrada para esta aeronave.</p>
-              {(userRole === 'ADMIN' || userRole === 'ENGINEER') && (
+              {isAdminOrEngineer() && (
                 <button
                   className={Style.botaoNovaEtapa}
                   onClick={() => setMostrarForm(true)}
@@ -351,7 +385,7 @@ export default function EtapasAeronavePage() {
                     )}
                   </div>
 
-                  {(userRole === 'ADMIN' || userRole === 'ENGINEER') && (
+                  {isAdminOrEngineer() && (
                     <div className={Style.acoes}>
                       <select
                         value={etapa.status}
@@ -369,6 +403,34 @@ export default function EtapasAeronavePage() {
                       >
                         Deletar
                       </button>
+                    </div>
+                  )}
+
+                  {isOperario() && (
+                    <div className={Style.acoesOperario}>
+                      {etapa.status === 'PENDING' && (
+                        <button
+                          className={Style.botaoAndamento}
+                          onClick={() => colocarEmAndamento(etapa.id)}
+                        >
+                          Colocar em Andamento
+                        </button>
+                      )}
+                      
+                      {etapa.status === 'IN_PROGRESS' && (
+                        <button
+                          className={Style.botaoConcluir}
+                          onClick={() => concluirEtapa(etapa.id)}
+                        >
+                          Concluir Etapa
+                        </button>
+                      )}
+                      
+                      {(etapa.status === 'PENDING' || etapa.status === 'COMPLETED') && (
+                        <span className={Style.semAcao}>
+                          {etapa.status === 'PENDING' ? 'Aguardando início' : 'Etapa concluída'}
+                        </span>
+                      )}
                     </div>
                   )}
                 </div>
